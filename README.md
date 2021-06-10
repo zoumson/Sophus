@@ -12,7 +12,7 @@
 [![Stack Overflow][stackoverflow-shield]][stackoverflow.com/users/11175375/adam]
 [![Leetcode][leetcode-shield]][eetcode.com/Hard_Code/]
 -->
-## Eigen basics
+## Geometry Transformation on matrix
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
@@ -54,7 +54,7 @@
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-Eigen matrix manipulation
+Apply geometry transformations on Eigen matrix
 
 <!--Built with -->
 ### Built With
@@ -65,7 +65,7 @@ Eigen matrix manipulation
 * [gnu](https://www.gnu.org/)
 * [eigen](https://eigen.tuxfamily.org/)
 * [boost](https://boost.org/)
-* [Pangolin](https://github.com/stevenlovegrove/Pangolin)
+* [sophus](https://github.com/strasdat/Sophus)
 <br>
 
 ## File Structure
@@ -86,9 +86,7 @@ Eigen matrix manipulation
 │   └── Log.h
 ├── README.md
 └── src
-    ├── eigenGeometry.cpp
-    ├── eigenMatrix.cpp
-    └── visualizeGeometry.cpp
+    └── useSophus.cpp
 
 ```
 
@@ -114,37 +112,43 @@ This is an example of how to list things you need to use the software and how to
  ```sh
  sudo apt-get install libboost-all-dev
  ```
- * pangolin
+ * sophus
  ```sh
- git clone https://github.com/stevenlovegrove/Pangolin.git
- sudo apt-get install libglew-dev
- sudo apt-get install cmake
- sudo apt-get install libpython2.7-dev
- sudo apt-get install ffmpeg libavcodec-dev libavutil-dev libavformat-dev libswscale-dev libavdevice-dev
- sudo apt-get install libdc1394-22-dev libraw1394-dev
- sudo apt-get install libjpeg-dev libpng12-dev libtiff5-dev libopenexr-dev
- cd Pangolin
- mkdir build
- cd build
- cmake ..
- cmake --build .
- make install
+git clone https://github.com/strasdat/Sophus.git
+cd Sophus/
+git checkout a621ff
+
+mkdir build
+cd build
+cmake ..
+make
+make install
  ```
+ Change the following codes at line `/Sophus/sophus/so2.cpp:33:26` as commented
+```
+SO2::SO2()
+{
+  //unit_complex_.real() = 1.;
+  //unit_complex_.imag() = 0.;
+  unit_complex_.real(1.);
+  unit_complex_.imag(0.);
+}
+```
 ### Installation
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/zoumson/Eigen.git
+   git clone https://github.com/zoumson/Sohpus.git
    ```
 2. Go to the project directory source
    ```sh
-   cd Eigen
+   cd Sohpus
    ```
 3. Create empty directories `build`, `log`, and `bin`
    ```sh
    mkdir build &&  mkdir bin && mkdir log
    ```
-5. Generate the exectutable `demo` and move it to `bin`
+5. Generate the exectutable `useSophus` and move it to `bin`
    ```sh
    cd build && cmake .. && make -j4 && cd ..
    ```
@@ -153,15 +157,11 @@ This is an example of how to list things you need to use the software and how to
 ### Usage
 1. Run for matrix usage 
    ```sh
-   ./bin/eigenMatrix
+   ./bin/useSohpus
    ```
-2. Run for geomotry computation 
+2. Output
    ```sh
-   ./bin/eigenGeometry
-   ```
-3. Run for geomotry graphical representation
-   ```sh
-   ./bin/visualizeGeometry
+
    ```
 
 4. Back to the initial file structure configuration
@@ -198,7 +198,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Adama Zouma - <!-- [@your_twitter](https://twitter.com/your_username) -->- stargue49@gmail.com
 
-Project Link: [https://github.com/zoumson/Eigen](https://github.com/zoumson/Eigen.git)
+Project Link: [https://github.com/zoumson/Sophus](https://github.com/zoumson/Sophus.git)
 
 
 
