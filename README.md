@@ -12,7 +12,7 @@
 [![Stack Overflow][stackoverflow-shield]][stackoverflow.com/users/11175375/adam]
 [![Leetcode][leetcode-shield]][eetcode.com/Hard_Code/]
 -->
-## Function arguments template 
+## Eigen basics
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
@@ -54,17 +54,7 @@
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-C functions exchange information by means of parameters and arguments. The term parameter refers to any declaration within the parentheses following the function name in a function declaration or definition; the term argument refers to any expression within the parentheses of a function call.
-
-The following rules apply to parameters and arguments of C functions:
-
-Except for functions with variable-length argument lists, the number of arguments in a function call must be the same as the number of parameters in the function definition. This number can be zero.
-* The maximum number of arguments (and corresponding parameters) is 253 for a single function.
-* Arguments are separated by commas. However, the comma is not an operator in this context, and the arguments can be evaluated by the compiler in any order. There is, however, a sequence point before the actual call.
-* Arguments are passed by value; that is, when a function is called, the parameter receives a copy of the argument's value, not its address. This rule applies to all scalar values, structures, and unions passed as arguments.
-* Modifying a parameter does not modify the corresponding argument passed by the function call. However, because arguments can be addresses or pointers, a function can use addresses to modify the values of variables defined in the calling function.
-* In the old style, parameters that are not explicitly declared are assigned a default type of int .
-* The scope of function parameters is the function itself. Therefore, parameters of the same name in different functions are unrelated.
+Eigen matrix manipulation
 
 <!--Built with -->
 ### Built With
@@ -73,7 +63,9 @@ Except for functions with variable-length argument lists, the number of argument
 
 * [cmake](https://cmake.org/)
 * [gnu](https://www.gnu.org/)
-
+* [eigen](https://eigen.tuxfamily.org/)
+* [boost](https://boost.org/)
+* [Pangolin](https://github.com/stevenlovegrove/Pangolin)
 <br>
 
 ## File Structure
@@ -91,10 +83,12 @@ Except for functions with variable-length argument lists, the number of argument
 .
 ├── CMakeLists.txt
 ├── include
-│   └── FctArgs.h
+│   └── Log.h
 ├── README.md
 └── src
-    └── Demo.cpp
+    ├── eigenGeometry.cpp
+    ├── eigenMatrix.cpp
+    └── visualizeGeometry.cpp
 
 ```
 
@@ -102,7 +96,7 @@ Except for functions with variable-length argument lists, the number of argument
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is a sample code of how you may regroup a function arguments in a class.
+This is a sample code of how you may use  the Eigen library matrix and transformations.
 To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
@@ -112,49 +106,67 @@ This is an example of how to list things you need to use the software and how to
   ```sh
   sudo apt-get install cmake
   ```
-
+ * eigen
+ ```sh
+ sudo apt-get install -y libeigen3-dev
+ ```
+ * boost
+ ```sh
+ sudo apt-get install libboost-all-dev
+ ```
+ * pangolin
+ ```sh
+ git clone https://github.com/stevenlovegrove/Pangolin.git
+ sudo apt-get install libglew-dev
+ sudo apt-get install cmake
+ sudo apt-get install libpython2.7-dev
+ sudo apt-get install ffmpeg libavcodec-dev libavutil-dev libavformat-dev libswscale-dev libavdevice-dev
+ sudo apt-get install libdc1394-22-dev libraw1394-dev
+ sudo apt-get install libjpeg-dev libpng12-dev libtiff5-dev libopenexr-dev
+ cd Pangolin
+ mkdir build
+ cd build
+ cmake ..
+ cmake --build .
+ make install
+ ```
 ### Installation
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/zoumson/FunctionArgumentsTemplate.git
+   git clone https://github.com/zoumson/Eigen.git
    ```
 2. Go to the project directory source
    ```sh
-   cd FunctionArgumentsTemplate
+   cd Eigen
    ```
-3. Create empty directories `build`,  and `bin`
+3. Create empty directories `build`, `log`, and `bin`
    ```sh
-   mkdir build &&  mkdir bin 
+   mkdir build &&  mkdir bin && mkdir log
    ```
 5. Generate the exectutable `demo` and move it to `bin`
    ```sh
-   cd build && cmake .. && make && cd ..
+   cd build && cmake .. && make -j4 && cd ..
    ```
 
 <!-- USAGE EXAMPLES -->
 ### Usage
-1. run 
+1. Run for matrix usage 
    ```sh
-   ./bin/demo
+   ./bin/eigenMatrix
    ```
-2. Output
-
-```
-Demo FctArgs template class
-void function2Args(za::FctArgs<int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >)
-First arguemnt: 100
-Second arguemnt: test 2 args
-void function3Args(za::FctArgs<int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool>)
-First arguemnt: 5
-Second arguemnt: test 3 args
-Third arguemnt: 1
-
-```
-
-3. Back to the initial file structure configuration
+2. Run for geomotry computation 
    ```sh
-   rm -r bin build 
+   ./bin/eigenGeometry
+   ```
+3. Run for geomotry graphical representation
+   ```sh
+   ./bin/visualizeGeometry
+   ```
+
+4. Back to the initial file structure configuration
+   ```sh
+   rm -r bin build log
    ```
 <!-- ROADMAP -->
 ## Roadmap
@@ -186,7 +198,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Adama Zouma - <!-- [@your_twitter](https://twitter.com/your_username) -->- stargue49@gmail.com
 
-Project Link: [https://github.com/zoumson/FunctionArgumentsTemplate](https://github.com/zoumson/FunctionArgumentsTemplate.git)
+Project Link: [https://github.com/zoumson/Eigen](https://github.com/zoumson/Eigen.git)
 
 
 
